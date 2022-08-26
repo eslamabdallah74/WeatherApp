@@ -1,7 +1,11 @@
 <script setup lang="ts">
 // Title
 useMeta({
-  title: 'WeatherApp'
+  title: 'WeatherApp',
+  link: [
+    { rel: 'icon', type: 'image/x-icon',
+      href: 'https://cdn-icons-png.flaticon.com/512/648/648198.png' }
+  ]
 })
 
 const cookie = useCookie("city");
