@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "generate": "nuxi generate"
+    "generate": "nuxi generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+
   },
   "devDependencies": {
     "nuxt": "npm:nuxt3@latest"
@@ -14,6 +16,7 @@
     "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/typography": "^0.5.2",
     "nuxt-start": "^2.15.8",
+    "push-dir": "^0.4.1",
     "tailwindcss": "^3.0.23"
   }
 }
