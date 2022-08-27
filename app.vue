@@ -3,8 +3,10 @@
 useMeta({
   title: 'WeatherApp',
   link: [
-    { rel: 'icon', type: 'image/x-icon',
-      href: 'https://cdn-icons-png.flaticon.com/512/648/648198.png' }
+    {
+      rel: 'icon', type: 'image/x-icon',
+      href: 'https://cdn-icons-png.flaticon.com/512/648/648198.png'
+    }
   ]
 })
 
@@ -54,7 +56,7 @@ const { data: city, error } = useAsyncData(
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3546&q=80";
       }
     } catch (e) {
-      if (!cookie.value) cookie.value = "suez";
+      // cookie.value = "suez";
       cityNotFound.value = "City Not Found";
     }
 
@@ -87,7 +89,8 @@ const handleClick = () => {
     <img :src="background" />
     <div class="absolute top-0 w-full h-full overlay" />
     <div class="absolute top-0 w-full h-full p-48">
-      <div class="flex justify-between">
+      <!-- Results -->
+      <div v-if="city" class="flex justify-between">
         <div class="">
           <h1 class="p-6 text-white text-7xl">{{ city.name }}</h1>
           <p class="mt-2 text-2xl text-white font-extralight">{{ today }}</p>
@@ -99,6 +102,20 @@ const handleClick = () => {
           <p class="text-3xl text-white">Max <span class="font-bold">{{ city.main.temp_max }}°</span></p>
           <p class="text-3xl text-white">Min <span class="font-bold">{{ city.main.temp_min }}°</span></p>
           <p class="text-3xl text-white">Humidity <span class="font-bold">{{ city.main.humidity }}%</span></p>
+        </div>
+      </div>
+      <!-- No results -->
+      <div v-else class="flex justify-between">
+        <div class="">
+          <h1 class="p-6 text-white text-7xl">City</h1>
+          <p class="mt-2 text-2xl text-white font-extralight">{{ today }}</p>
+        </div>
+        <div class="p-6 bg-blue-400 rounded-lg">
+          <p class="font-bold text-white text-9xl">0°</p>
+          <p class="text-3xl text-white">Feels like <span class="font-bold">0°</span></p>
+          <p class="text-3xl text-white">Max <span class="font-bold">0°</span></p>
+          <p class="text-3xl text-white">Min <span class="font-bold">0°</span></p>
+          <p class="text-3xl text-white">Humidity <span class="font-bold">0%</span></p>
         </div>
       </div>
       <div class="mt-20">
