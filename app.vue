@@ -54,7 +54,8 @@ const { data: city, error } = useAsyncData(
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3546&q=80";
       }
     } catch (e) {
-      cityNotFound.value = "City not found";
+      if (!cookie.value) cookie.value = "suez";
+      cityNotFound.value = "City Not Found";
     }
 
     return response;
@@ -106,6 +107,10 @@ const handleClick = () => {
           Search
         </button>
       </div>
+      <!-- Error -->
+      <p v-if="cityNotFound" class="p-2 m-2 text-center text-white bg-red-500">
+        {{ cityNotFound }}
+      </p>
     </div>
   </div>
 
